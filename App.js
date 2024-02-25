@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, TextInput, Alert, ImageBackground } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 import Api from './src/page/consultaCep';
 import { ButtonSmall } from './src/page/buttonSmall';
+import backg from './assets/back.jpg';
 
 export default function App() {
 
@@ -61,7 +62,9 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+
+    <ImageBackground source={backg} style={styles.background}>
+      <View style={styles.container}>
 
       <TextInput
         placeholder='Digite aqui o CEP'
@@ -70,14 +73,17 @@ export default function App() {
         onChangeText={Text => setCep(Text)}
         style={styles.input}
       />
-      
-      <ButtonSmall title='Buscar' onPress={buscarCep} />
-      
+
+      <View style={styles.central}>
+        <ButtonSmall title='Buscar' onPress={buscarCep} />
+      </View>
+
       <TextInput
-        placeholder='Tipo'
+        placeholder='Tipo do Endereço'
         value={tipo}
         onChangeText={Text => setTipo(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -85,6 +91,7 @@ export default function App() {
         value={endereco}
         onChangeText={Text => setEndereco(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -92,6 +99,7 @@ export default function App() {
         value={bairro}
         onChangeText={Text => setBairro(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -99,6 +107,7 @@ export default function App() {
         value={cidade}
         onChangeText={Text => setCidade(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -106,6 +115,7 @@ export default function App() {
         value={estado}
         onChangeText={Text => setEstado(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -113,6 +123,7 @@ export default function App() {
         value={ddd}
         onChangeText={Text => setDdd(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -120,6 +131,7 @@ export default function App() {
         value={long}
         onChangeText={Text => setLong(Text)}
         style={styles.input}
+        editable={false}
       />
 
       <TextInput
@@ -127,35 +139,52 @@ export default function App() {
         value={lati}
         onChangeText={Text => setLati(Text)}
         style={styles.input}
+        editable={false}
       />
+      <View style={styles.central}>
+        <ButtonSmall title='Limpar' onPress={limpar} />
 
-      <ButtonSmall title='Limpar' onPress={limpar} />
+        <ButtonSmall title='Copiar Endereço' 
+          onPress={copyToClipboard}
+        />
+      </View>
 
-      <ButtonSmall title='Copiar Endereço' 
-        onPress={copyToClipboard}
-      />
+      </View>
+    </ImageBackground>
 
-    </View>
+    
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: '#A009',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#A009',
+    opacity: 0.94,
   },
+
   input: {
     backgroundColor: 'white',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 5,
+    marginTop: 8,
     width: 280,
     height: 40,
     fontSize: 17,
+    color: 'black',
+    justifyContent: 'center',
+    
+    opacity: 1.90,
   },
+
+  central: {
+    alignItems: 'center',
+  },
+
   paraTexto: {
     fontSize: 20,
     paddingHorizontal: 35,
