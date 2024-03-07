@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Alert, ImageBackground } from 'react-native';
+import { StyleSheet, View, TextInput, Text, Alert, ImageBackground, Keyboard, TouchableNativeFeedback, ScrollView } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
 import Api from './src/page/consultaCep';
@@ -63,107 +63,117 @@ export default function App() {
 
   return (
 
+<TouchableNativeFeedback touchSoundDisabled onPress={() => Keyboard.dismiss()} >
     <ImageBackground source={backg} style={styles.background}>
-      <View style={styles.container}>
+      <ScrollView>
+      
+        <View style={styles.container}>
 
-      <TextInput
-        placeholder='Digite aqui o CEP'
-        keyboardType='numeric'
-        value={cep}
-        onChangeText={Text => setCep(Text)}
-        style={styles.input}
-      />
+          <Text style={styles.paraTexto}>Consulte seu CEP</Text>
 
-      <View style={styles.central}>
-        <ButtonSmall title='Buscar' onPress={buscarCep} />
-      </View>
-
-      <TextInput
-        placeholder='Tipo do Endereço'
-        value={tipo}
-        onChangeText={Text => setTipo(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Endereço'
-        value={endereco}
-        onChangeText={Text => setEndereco(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Bairro'
-        value={bairro}
-        onChangeText={Text => setBairro(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Cidade'
-        value={cidade}
-        onChangeText={Text => setCidade(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Estado'
-        value={estado}
-        onChangeText={Text => setEstado(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='DDD'
-        value={ddd}
-        onChangeText={Text => setDdd(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Longitude'
-        value={long}
-        onChangeText={Text => setLong(Text)}
-        style={styles.input}
-        editable={false}
-      />
-
-      <TextInput
-        placeholder='Latitude'
-        value={lati}
-        onChangeText={Text => setLati(Text)}
-        style={styles.input}
-        editable={false}
-      />
-      <View style={styles.central}>
-        <ButtonSmall title='Limpar' onPress={limpar} />
-
-        <ButtonSmall title='Copiar Endereço' 
-          onPress={copyToClipboard}
+        <TextInput
+          placeholder='Digite aqui o CEP'
+          keyboardType='numeric'
+          value={cep}
+          onChangeText={Text => setCep(Text)}
+          style={styles.input}
         />
-      </View>
 
-      </View>
+        <View style={styles.central}>
+          <ButtonSmall title='Buscar' onPress={buscarCep} />
+        </View>
+
+        <TextInput
+          placeholder='Tipo do Endereço'
+          value={tipo}
+          onChangeText={Text => setTipo(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Endereço'
+          value={endereco}
+          onChangeText={Text => setEndereco(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Bairro'
+          value={bairro}
+          onChangeText={Text => setBairro(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Cidade'
+          value={cidade}
+          onChangeText={Text => setCidade(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Estado'
+          value={estado}
+          onChangeText={Text => setEstado(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='DDD'
+          value={ddd}
+          onChangeText={Text => setDdd(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Longitude'
+          value={long}
+          onChangeText={Text => setLong(Text)}
+          style={styles.input}
+          editable={false}
+        />
+
+        <TextInput
+          placeholder='Latitude'
+          value={lati}
+          onChangeText={Text => setLati(Text)}
+          style={styles.input}
+          editable={false}
+        />
+        <View style={styles.central}>
+          <ButtonSmall title='Limpar' onPress={limpar} />
+
+          <ButtonSmall title='Copiar Endereço' 
+            onPress={copyToClipboard}
+          />
+        </View>
+
+        </View>
+        
+      </ScrollView>
     </ImageBackground>
-
+</TouchableNativeFeedback>
     
   );
 }
 
 const styles = StyleSheet.create({
+  
+  
   background: {
     flex: 1,
     width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#A009',
-    opacity: 0.94,
+    
   },
 
   input: {
@@ -171,10 +181,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 8,
-    width: 280,
+    marginTop: 15,
+    width: 320,
     height: 40,
-    fontSize: 17,
+    fontSize: 15,
     color: 'black',
     justifyContent: 'center',
     
@@ -188,6 +198,11 @@ const styles = StyleSheet.create({
   paraTexto: {
     fontSize: 20,
     paddingHorizontal: 35,
-    marginTop: 15,
+    marginTop: 80,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    textAlign: 'center',
+    height: 50,
+    paddingTop: 10,
   },
 });
