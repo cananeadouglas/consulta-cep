@@ -165,7 +165,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   
-  
   background: {
     flex: 1,
     width: '100%',
@@ -173,7 +172,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#A009',
-    
+    container: {
+      width: 380,
+    }
   },
 
   input: {
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
   paraTexto: {
     fontSize: 20,
     paddingHorizontal: 35,
-    marginTop: 80,
+    marginTop: 180,
     backgroundColor: 'white',
     borderRadius: 10,
     textAlign: 'center',
